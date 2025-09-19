@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Media1 assignment 1</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./assets/site.webmanifest" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header><h1>Assignment2-mySynthesizerUI</h1></header>
+    <nav>
+      <a href="https://yuliaxsynthesizeui.netlify.app/">Go to my website</a>
+    </nav>
+    <main>
+      <section>
+        <div id="infoPara"></div>
+        <h2>inspiration</h2>
+        <nav><a href="https://patatap.com/">patatap</a></nav>
+        <nav><a href="https://aidn.jp/mikutap/">mikutap</a></nav>
+        <section>
+          <p>
+            These two websites are quite similar. The idea of these two websites
+            is clicking on different parts of the screen will produce different
+            sound and different animations, which provides quite engaging
+            experience.
+          </p>
+        </section>
+
+        <section>
+          <h2>Conceptual response</h2>
+          <p>
+            My concept is a no text website that generating some random sounds
+            and ripples or colorful circles based on the mouse click coordinates
+            of the user. This website aims to create an engaging interactive
+            experience by integrating user actions, visuals and auditory
+            elements. The x-axis represents the pitch variation, the y-axis
+            represents the filter change, and the generated sound waveforms on
+            the website are random (the visual part must be random as well). The
+            website needs to have a pause button to stop the sound for a while,
+            a button to reset all the settings and a volume slider. The website
+            should focus more on intuitive and reduce instruction to let the
+            users explore the website by themselves. It's important to consider
+            how to attract users to explore the website actively.
+          </p>
+          <div id="visualMap">
+            <img src="assets/visual map1.jpg" alt="visual map1" />
+            <img src="assets/visual map2.jpg" alt="visual map2" />
+            <img src="assets/visual map3.jpg" alt="visual map3" />
+          </div>
+        </section>
+
+        <section>
+          <h2>Implementation and system map</h2>
+          <div id="systemMap">
+            <p>
+              the technique I chose is using addeventlistener to trigger mouse
+              action. Create a pad of the same size as the window to monitor the
+              x and y coordinates of the mouse. Use Math.random() to select a
+              random wavetype. Every time the mouse is clicked, a new oscillator
+              is created and connected to a new filter. Their values are
+              determined by the mouse position. By calculating the ratio of the
+              coordinates to the window size, it gives a value specific to these
+              coordinates. Use setValueAtTime(value, starttime) to monitor the
+              current mouse value, and update the corresponding value each time
+              the mouse moves, achieving the effect of dragging and sound
+              variation. To achieve the fade-out effect of the sound,
+              exponentialRampToValueAtTime(value, endtime) is used. And stop()
+              is used to set the duration of the sound extension.
+            </p>
+            <img src="assets/xypad system map.jpg" alt="xypad system map" />
+            <p>
+              e.stopPropagation() prevents the area at the bottom of the button
+              from triggering the sound. The setting of the "pause button" is as
+              follows: when the mouse is clicked, it checks whether the
+              audioContext is running. If it is running, it switches the play
+              icon to the pause icon, then suspend it; if it is paused, it
+              switches the pause icon to the play icon, then re-open it. The
+              setting for the "reset button" is as follows: After clicking with
+              the mouse, it closes the currently running audioContext, then
+              creates a brand new one and resets the volume to the default
+              level. The "volume slider" links the current value clicked by the
+              mouse with the volume.
+            </p>
+            <img
+              src="assets/UIsetting system map.jpg"
+              alt="UIsetting system map"
+            />
+          </div>
+        </section>
+
+        <div>
+          <h2>Feedback setting (before peer user testing)</h2>
+          <p>
+            I tried to enhance the interactive feedback. Inverting the image of
+            buttons while clicking on the button. For the red dot, it changes
+            into a slightly deeper red while clicking and dragging
+          </p>
+        </div>
+
+        <section>
+          <h2>reflection on peer user testing</h2>
+          <h3>
+            <ol>
+              <li>Does click,drag and the sound provide enough feedback?</li>
+              <p>
+                Most users' feedback are saying the sound provides great
+                feedback. Some mention that it lacks visual feedback at this
+                stage, especially the red dot.I will think about how to add more
+                diverse variations to the red dot(maybe when click the size
+                changes). Some feedback mention that it would be great with
+                ripples as visual feedback, so considering the visual style of
+                ripples is necessary. It is worth noting that since no specific
+                ripple appears on the screen, each person's imagined ripple may
+                be different. There has not been sufficient feedback in this
+                regard. Next time making a prototype, some visual demonstrations
+                need to be added and collect feedback. Visual feedback should be
+                obvious and attractive to users.
+              </p>
+
+              <li>Do the sound create a comfortable or engaging experience?</li>
+              <p>
+                some feedback suggest that The tone is too sharp and the sound
+                doesn't match the expectation for "ripple". I'm considering
+                change the tone of the sound, especially the dragging
+                sound(someone says it reminds them of a mosquito but I don't
+                want that.). Although one of the feedback says that it provides
+                surprise and delight, I want the sound and the visual effects to
+                stay cohensive. I feel like the tone does provide some fun part
+                to this project, but there's quite big differece between
+                clicking sound and dragging sound. An interesting discover is
+                that some users may prefer surprising feeling, but the feeling
+                should partially matches their expectation. It's worthwhile to
+                balance these two aspects (How to ensure both the fun factor,
+                which against the expectations, and a sense of comfort that
+                meets expectations). I notice through other peers' questions
+                that different sound can provide different emotions to the
+                users. It depends on what atmosphere I want to provide for
+                users. I should consider more about the emotion.
+              </p>
+            </ol>
+          </h3>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
